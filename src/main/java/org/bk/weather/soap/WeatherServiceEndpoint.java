@@ -16,6 +16,7 @@ public class WeatherServiceEndpoint implements WeatherService {
         forecastReturn.setCity("Bothell");
         forecastReturn.setState("WA");
         forecastReturn.setResponseText("Sunny");
+        forecastReturn.setSuccess(true);
         return forecastReturn;
     }
     
