@@ -58,13 +58,13 @@ public class WeatherIntegrationTest {
 	public static class IntegrationTestConfig {
 
 		@Value("${weather.url}")
-		private String usageUrl;
+		private String weatherUrl;
 
 		@Bean
 		public WeatherService weatherServiceSystemTestClient() {
 			JaxWsProxyFactoryBean jaxWsProxyFactory = new JaxWsProxyFactoryBean();
 			jaxWsProxyFactory.setServiceClass(WeatherService.class);
-			jaxWsProxyFactory.setAddress(usageUrl);
+			jaxWsProxyFactory.setAddress(weatherUrl);
 			return (WeatherService) jaxWsProxyFactory.create();
 		}
 
