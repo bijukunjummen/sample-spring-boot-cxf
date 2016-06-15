@@ -7,13 +7,14 @@ import de.codecentric.namespace.weatherservice.general.ForecastCustomer;
 import de.codecentric.namespace.weatherservice.general.ForecastRequest;
 import de.codecentric.namespace.weatherservice.general.ForecastReturn;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
-import org.bk.SampleSoapApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -55,12 +56,21 @@ public class WeatherIntegrationTest {
 
 	@Configuration
 	public static class IntegrationTestConfig {
+
+		@Value("${weather.url}")
+		private String usageUrl;
+
 		@Bean
 		public WeatherService weatherServiceSystemTestClient() {
 			JaxWsProxyFactoryBean jaxWsProxyFactory = new JaxWsProxyFactoryBean();
 			jaxWsProxyFactory.setServiceClass(WeatherService.class);
-			jaxWsProxyFactory.setAddress("http://localhost:8080/soap-api/weather");
+			jaxWsProxyFactory.setAddress(usageUrl);
 			return (WeatherService) jaxWsProxyFactory.create();
+		}
+
+		@Bean
+		public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+			return new PropertySourcesPlaceholderConfigurer();
 		}
 	}
 }
