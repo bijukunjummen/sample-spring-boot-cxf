@@ -7,9 +7,8 @@ import org.apache.cxf.jaxws.EndpointImpl;
 import org.apache.cxf.transport.servlet.CXFServlet;
 import org.bk.calc.endpoint.CalculatorEndpoint;
 import org.bk.weather.soap.WeatherServiceEndpoint;
-import org.example.CalculatorService;
 import org.example.ICalculator;
-import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
